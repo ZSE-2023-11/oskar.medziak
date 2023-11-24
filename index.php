@@ -84,32 +84,26 @@ form {
         </div>
         <div class="input-box">
             <form method="post">
-                <input name="username" id="username" type="text" required>
-                <input name="password" id="password" type="password" required>
+                <input name="username" id="username" type="text" placeholder="Login" required>
+                <input name="password" id="password" type="password" placeholder="Hasło" required>
                 <button id="login">Zaloguj</button>
             </form>
         </div>
     </div>
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $usernameInput = $_POST["username"];
-    $passwordInput = $_POST["password"];
-
-
-    if ($usernameInput === "admin" && $passwordInput === "test") 
-    {
-        $message = "Zalogowano pomyślnie";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-
-    } 
-    else 
-    {
-        $message = "Złe dane logowania";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($_POST["username"] == "admin" && $_POST["password"] == "test")
+        {
+            $message = "Zalogowano pomyślnie";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else 
+        {
+            $message = "Złe dane logowania";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
     }
-}
 ?>
 
 </body>
