@@ -84,8 +84,8 @@ form {
         </div>
         <div class="input-box">
             <form method="post">
-                <input name="username" id="username" type="text" required>
-                <input name="password" id="password" type="password" required>
+                <input name="username" id="username" type="text" placeholder="Login" required>
+                <input name="password" id="password" type="text" placeholder="Hasło" required>
                 <button id="login">Zaloguj</button>
             </form>
         </div>
@@ -99,18 +99,13 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $conn->real_escape_string($_POST["username"]);
-    $password = $conn->real_escape_string($_POST["password"]);
-
-    $query = "SELECT * FROM users WHERE username='$login' AND password='$password'";
+    $query = "SELECT * FROM users WHERE username='" . $conn->real_escape_string($_POST["username"]) . "' AND password='" . $conn->real_escape_string($_POST["password"]) . "'";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
         $message = "Zalogowano pomyślnie.";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    } 
-    else 
-    {
+    } else {
         $message = "Błąd logowania.";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
